@@ -45,12 +45,11 @@ export default function JobPost() {
     <div>
       <main>
         <Header />
-
-        <div className={styles.subHeader}>
-          <img className={styles.subHeaderBackground} src="/bg_job-post.png" />
+        <div className="h-auto w-[100%] mw-[1400px] relative">
+          <img className="absolute w-[100%] h-auto z-1" src="/bg_job-post.png" />
           <div className={styles.subHeaderHorizontalContainer}>
-            <div className={styles.subHeaderVerticalContainer}>
-              <div className={styles.subHeaderContent}>
+            <div className="h-[100%] flex flex-row jusify-center">
+              <div className="w-[1400px] h-[100%] flex flex-col justify-space-evenly">
                 <div className={styles.subHeaderTop}>
                   <div className={styles.subHeaderAvatar}>
                     <img src="/ic_avatar.png" />
