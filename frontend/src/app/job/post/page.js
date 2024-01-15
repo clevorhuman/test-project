@@ -46,7 +46,7 @@ export default function JobPost() {
       <main>
         <Header />
 
-        <div className={styles.subHeader}>
+        <div className="h-auto w-[100%] mw-[1400px] relative">
           <img className={styles.subHeaderBackground} src="/bg_job-post.png" />
           <div className={styles.subHeaderHorizontalContainer}>
             <div className={styles.subHeaderVerticalContainer}>
