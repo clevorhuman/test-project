@@ -1,7 +1,7 @@
 import http from "../utils/http-common";
 
-const getAll = (searchKey, filter) => {
-  return http.get(`/jobs?searchKey=${searchKey}&filter=${filter}`);
+const getAll = (pageNum, pageSize, searchKey, filter) => {
+  return http.get(`/jobs?pageNum=${pageNum}&pageSize=${pageSize}&searchKey=${searchKey}&filter=${filter}`);
 };  
 
 const get = id => {
