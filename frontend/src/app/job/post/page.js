@@ -51,7 +51,7 @@ export default function JobPost() {
             <div className="h-[100%] flex flex-row jusify-center">
               <div className="w-[1400px] h-[100%] flex flex-col justify-space-evenly">
                 <div className={styles.subHeaderTop}>
-                  <div className={styles.subHeaderAvatar}>
+                  <div className="grow-auto w-auto">
                     <img src="/ic_avatar.png" />
                   </div>
                   <div className={styles.subHeaderLabelGroup}>
