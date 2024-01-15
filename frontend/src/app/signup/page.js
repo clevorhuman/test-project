@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import Link from 'next/link';
 import Head from 'next/head'
 import Image from 'next/image'
@@ -23,7 +23,7 @@ export default function Home() {
       console.log(credentialRespose);
       userservice.googleAuth({
         credentialRespose
-      }).then((res) => {
+      }).then(() => {
         toast.success("Login success by Google");
         router.push('/job/list');
       });

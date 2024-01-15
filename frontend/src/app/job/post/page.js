@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from '@/styles/Job.module.css'
@@ -34,7 +34,7 @@ export default function JobPost() {
       ...formData,
       createdDate: new Date(),
       expirationDate: new Date()
-    }).then(res => {
+    }).then(() => {
       // setFormData(initData);
       toast("Job post is success!")
       router.push('/job/list')
