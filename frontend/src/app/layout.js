@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { ToastContainer } from 'react-toastify';
+import { GoogleOAuthProvider  } from '@react-oauth/google'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +15,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-        {children}
+        <GoogleOAuthProvider
+          clientId="529685668955-i8dp14764i4i2qbevnl4a1e0cng4ib7b.apps.googleusercontent.com"
+        >
+          {children}
+        </GoogleOAuthProvider>
       </body>
     </html>
   )
