@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import styles from '@/styles/Job.module.css'
@@ -34,7 +34,7 @@ export default function JobPost() {
       ...formData,
       createdDate: new Date(),
       expirationDate: new Date()
-    }).then(res => {
+    }).then(() => {
       // setFormData(initData);
       toast("Job post is success!")
       router.push('/job/list')
@@ -51,7 +51,7 @@ export default function JobPost() {
             <div className="h-[100%] flex flex-row jusify-center">
               <div className="w-[1400px] h-[100%] flex flex-col justify-space-evenly">
                 <div className={styles.subHeaderTop}>
-                  <div className={styles.subHeaderAvatar}>
+                  <div className="grow-auto w-auto">
                     <img src="/ic_avatar.png" />
                   </div>
                   <div className={styles.subHeaderLabelGroup}>
