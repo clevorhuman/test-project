@@ -129,14 +129,6 @@
 
 
 /* Sub Header */
-.subHeader {
-  position: relative;
-  flex-direction: column;
-  width: 100%;
-  min-width: 1400px;
-  height: auto;
-}
-
 .subHeaderBackground {
   position: absolute;
   z-index: 1;
@@ -152,21 +144,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.subHeaderVerticalContainer {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.subHeaderContent {
-  display: flex;
-  width: 1400px;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
 
 .subHeaderTop {
