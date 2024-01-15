@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import styles from '@/styles/Job.module.css'
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-// import { AlignCenterOutlined } from '@ant-design/icons';
 import jobservice from '@/services/JobService';
 
 import List from '@/components/List';
@@ -15,13 +14,15 @@ import Image from 'next/image';
 
 export default function JobList() {
   const router = useRouter();
+  const [pageNum, setPageNum] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
   const [searchKey, setSearchKey] = useState("");
   const [filter, setFilter] = useState(2);
   const [total, setTotal] = useState(0);
   const [jobList, setJobList] = useState([]);
 
   const getJobList = () => {
-    jobservice.getAll(searchKey, filter).then(res => {
+    jobservice.getAll(pageNum, pageSize, searchKey, filter).then(res => {
       console.log(res.data);
       setJobList(res.data.total.rows);
       setTotal(res.data.total.count);
@@ -30,8 +31,12 @@ export default function JobList() {
 
   useEffect(() => {
     getJobList();
-    router.push(`/job/list?search_key=${searchKey}&filter=${filter}`);
-  }, [searchKey, filter]);
+    router.push(`/job/list?pageNum=${pageNum}&pageSize=${pageSize}&search_key=${searchKey}&filter=${filter}`);
+  }, [pageNum, pageSize, searchKey, filter]);
+
+  useEffect(() => {
+    console.log(pageNum);
+  }, [pageNum]);
 
   return (
     <div className={styles.container}>
@@ -54,7 +59,7 @@ export default function JobList() {
                 </div>
                 <div className={styles.subHeaderButtonGroup}>
                   <div className={styles.subHeaderButton}>Dashboard</div>
-                  <Link href={`/job/list?search_key=${searchKey}&filter=${filter}`} className={styles.subHeaderButton}>My Jobs</Link>
+                  <Link href={`/job/list?pageNum=${pageNum}&pageSize=${pageSize}&search_key=${searchKey}&filter=${filter}`} className={styles.subHeaderButton}>My Jobs</Link>
                   <div className={styles.subHeaderButton}>Applicants</div>
                   <div className={styles.subHeaderButton}>Interviews</div>
                 </div>
@@ -99,24 +104,11 @@ export default function JobList() {
             </List>
             <Pagination
               total={total}
+              pageNum={pageNum}
+              pageSize={pageSize}
+              setPageNum={setPageNum}
+              setPageSize={setPageSize}
             />
-{/*
-            <div className={styles.paginationGroup}>
-              <div className={styles.paginationButtonGroup}>
-                <img className={styles.paginationButton} src="/ic_nav-arrow-left.png" />
-                <div className={styles.paginationLabel}>
-                  <div className={styles.paginationState}>1</div>
-                </div>
-                <div className={styles.paginationLabel}>
-                  <div className={styles.paginationState}>2</div>
-                </div>
-                <div className={styles.paginationLabel}>
-                  <div className={styles.paginationState}>3</div>
-                </div>
-                <img className={styles.paginationButton} src="/ic_nav-arrow-right.png" />
-              </div>
-            </div>
-*/}
           </div>
         </code>
 

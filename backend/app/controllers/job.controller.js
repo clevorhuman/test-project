@@ -25,8 +25,12 @@ exports.create = (req, res) => {
 
 // Retrieve all Tutorials from the database.
 exports.findAll = (req, res) => {
-  const { searchKey, filter } = req.query;
+  const { pageNum, pageSize, searchKey, filter } = req.query;
   var condition = {}, offset = 0, limit = 0;
+  if (pageNum && pageSize) {
+    offset = pageSize * (pageNum - 1);
+    limit = pageSize;
+  }
   if (searchKey) {
     condition.title = { [Op.like]: `%${searchKey}%` };
   }
@@ -36,6 +40,8 @@ exports.findAll = (req, res) => {
   console.log(condition);
   Job.findAndCountAll({
     where: condition,
+    offset: parseInt(offset),
+    limit: parseInt(limit),
     order: [
       ['createdAt', 'DESC'],
     ]
