@@ -1,5 +1,6 @@
 module.exports = (app) => {
   const users = require("../controllers/user.controller.js");
+  const googleUsers = require("../controllers/google.user.controller.js");
 
   router = require("express").Router();
 
@@ -10,6 +11,8 @@ module.exports = (app) => {
   router.delete('/:id', users.delete);
   router.delete('/', users.deleteAll);
   router.post('/login', users.login);
+
+  router.post('/googlelogin', googleUsers.login);
 
   app.use('/api/users', router);
 

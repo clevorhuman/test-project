@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
@@ -16,6 +17,22 @@ export default function Home() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordType, setPasswordType] = useState(true);
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (credentialRespose) => {
+      console.log(credentialRespose);
+      userservice.googleAuth({
+        credentialRespose
+      }).then((res) => {
+        toast.success("Login success by Google");
+        router.push('/job/list');
+      }).catch(err => {
+        console.log(err);
+        toast.error(err.response.data.message);
+      });
+    },
+    flow: 'auth-code',
+  });
 
   const onSubmit = () => {
     if (!validEmail(email)) {
@@ -115,6 +132,7 @@ export default function Home() {
 
             <button
               className="flex grow-auto flex-row justify-center w-[100%] h-[32px] pt-1 pl-3 pb-1 pr-3 border-[1px] border-[#D8D7E8] radius-1 text-[14px] text-[#3B368D] bg-white rounded-[8px]"
+              onClick={() => googleLogin()}
             >
               <img
                 className="grow-auto pr-2"
